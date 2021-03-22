@@ -10,12 +10,25 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
   const username = req.body.username;
   const userKey = req.body.userKey;
+  const following = req.body.following;
+  const newUser = new User({username,userKey, following});
 
-  const newUser = new User({username,userKey});
 
-  newUser.save()
-    .then(() => res.json('User added!'))
-    .catch(err => res.status(400).json('Error: ' + err));
+  let result  = 0;
+
+  User.find({userKey: userKey})
+    .then(users => {
+          result = users.length;
+          if(result ==0 ){
+            newUser.save()
+            .then(() => res.json('ADDED INTO DATABASE'))
+            .catch(err => res.status(400).json('Error: ' + err));
+          }else{
+            res.json("FOUND IN DATABSE")
+          }
+  })
+
+
 });
 
 module.exports = router;

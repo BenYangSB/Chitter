@@ -8,6 +8,7 @@ import Navbar from "./components/navbar.component"
 import ExercisesList from "./components/exercises-list.component";
 import EditExercise from "./components/edit-exercise.component";
 import CreateExercise from "./components/create-exercise.component";
+import axios from 'axios';
 
 import CreateUser from "./components/create-user.component";
 import firebase from 'firebase';
@@ -33,6 +34,17 @@ class App extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       this.setState({ isSignedIn: !!user })
       console.log("user", user)
+      
+      const userAdd = {
+        username: firebase.auth().currentUser.displayName,
+        userKey: firebase.auth().currentUser.uid,
+        following: [firebase.auth().currentUser.uid]
+      }
+    
+      axios.post('http://localhost:5000/users/add', userAdd)
+        .then(res => console.log(res.data));
+  
+
     })
   }
 

@@ -14,7 +14,9 @@ const userSchema = new Schema({
         required: true,
         unqiue: true,
         trim: true,
-    }
+    },
+    following: { type: Array, required: true }
+
 }, {
     timestamps: true,
 });

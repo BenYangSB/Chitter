@@ -23,6 +23,7 @@ router.route('/update/:id').post((req, res) => {
       users.username = req.body.username;
       users.userKey = req.body.userKey;
       users.following = req.body.following;
+      users.followers = req.body.followers;
 
       users.save()
         .then(() => res.json('User updated!'))
@@ -35,9 +36,8 @@ router.route('/add').post((req, res) => {
   const username = req.body.username;
   const userKey = req.body.userKey;
   const following = req.body.following;
-  const newUser = new User({username,userKey, following});
-
-  console.log(following)
+  const followers = req.body.followers;
+  const newUser = new User({username,userKey,following,followers});
 
   let result  = 0;
 
@@ -49,16 +49,6 @@ router.route('/add').post((req, res) => {
             .then(() => res.json('ADDED INTO DATABASE'))
             .catch(err => res.status(400).json('Error: ' + err));
           }
-          // }else if(users.following == null || following.length > users.following.length){
-          //   //res.json("updating the user!")
-          //   //users.userKey = "ben";
-          //   // users.userKey = userKey;
-          //   // users.following = following;
-            
-          //   users.save()
-          //     .then(() => res.json('User updated!'))
-          //     .catch(err => res.status(400).json('Error: ' + err));
-          // }
           else{
             res.json("FOUND IN DATABSE")
           }

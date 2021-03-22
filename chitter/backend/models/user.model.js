@@ -15,7 +15,8 @@ const userSchema = new Schema({
         unqiue: true,
         trim: true,
     },
-    following: { type: Array, required: true }
+    following: { type: Array, required: true },
+    followers: {type: Number, required: true}
 
 }, {
     timestamps: true,

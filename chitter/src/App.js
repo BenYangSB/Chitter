@@ -38,7 +38,8 @@ class App extends React.Component {
       const userAdd = {
         username: firebase.auth().currentUser.displayName,
         userKey: firebase.auth().currentUser.uid,
-        following: [firebase.auth().currentUser.uid]
+        following: [firebase.auth().currentUser.uid],
+        followers: 0
       }
     
       axios.post('http://localhost:5000/users/add', userAdd)

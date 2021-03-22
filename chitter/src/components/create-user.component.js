@@ -32,9 +32,19 @@ export default class CreateUser extends Component {
           username: this.state.currentUser.username,
           userKey: this.state.currentUser.userKey,
           following: temp,
+          followers: this.state.currentUser.followers,
         }
 
         axios.post('http://localhost:5000/users/update/' + this.state.currentUser._id, userUpdatedFollow)
+        .then(res => console.log(res.data));
+
+        const userUpdatedFollowers = {
+          username: input.username,
+          userKey: input.userKey,
+          following: input.following,
+          followers: input.followers+1,
+        }
+        axios.post('http://localhost:5000/users/update/' + input._id, userUpdatedFollowers)
         .then(res => console.log(res.data));
     }
   }
@@ -98,8 +108,9 @@ export default class CreateUser extends Component {
       <div>
               {
                 this.state.users.map((user)=> {
-                  return <div class= "follow">  
-                      {user.username}
+                  return <div class= "follow"> 
+
+                      {user.username + " -> " + user.followers}
                       <button id = "followBtn" onClick = {()=> this.onFollow(user)}>Follow!</button>                
                   </div>;
                 })

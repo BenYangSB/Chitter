@@ -1,0 +1,70 @@
+
+import React, { useState } from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
+import './App.css'
+import { BrowserRouter as Router, Route} from "react-router-dom";
+import authMethod from './configs/authMethod'
+import Navbar from "./components/navbar.component"
+import ExercisesList from "./components/exercises-list.component";
+import EditExercise from "./components/edit-exercise.component";
+import CreateUser from "./components/create-user.component";
+import firebase from 'firebase';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+
+
+function App() {
+
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [name, setName] = useState()
+
+  const uiConfig = {
+    signInFlow: "popup",
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    ],
+    callbacks: {
+      signInSuccess: () => false
+    }
+  }
+
+  componentDidMount = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      this.setState({ isSignedIn: !!user })
+      console.log("user", user)
+    })
+  }
+  
+  return (
+   
+        <Router>
+        <div className="container">
+
+        {
+          loggedIn ? 
+          <p>
+            SIGNED IN!
+          </p> :
+          <p>
+            NOT SIGNED IN!
+          </p>
+        }
+        <div>
+                  <Navbar />
+                  <br/>
+                  <Route path="/" exact component={ExercisesList} />
+                  <Route path="/edit/:id" component={EditExercise} />
+                   <Route path="/user" component={CreateUser} />
+        </div>
+
+        <div className = "logIn">
+        </div>
+        
+      </div>
+      </Router>
+    
+
+  );
+}
+
+export default App;

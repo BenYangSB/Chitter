@@ -9,6 +9,8 @@ export default class EditExercise extends Component {
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeIngredients = this.onChangeIngredients.bind(this);
+
     this.onChangeDuration = this.onChangeDuration.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -16,6 +18,7 @@ export default class EditExercise extends Component {
     this.state = {
       username: '',
       description: '',
+      ingredients: '',
       duration: 0,
       date: new Date(),
       users: []
@@ -29,7 +32,8 @@ export default class EditExercise extends Component {
           username: response.data.username,
           description: response.data.description,
           duration: response.data.duration,
-          date: new Date(response.data.date)
+          date: new Date(response.data.date),
+          ingredients: response.data.ingredients
         })   
       })
       .catch(function (error) {
@@ -48,6 +52,12 @@ export default class EditExercise extends Component {
         console.log(error);
       })
 
+  }
+
+  onChangeIngredients(e) {
+    this.setState({
+      ingredients: e.target.value
+    })
   }
 
   onChangeUsername(e) {
@@ -79,9 +89,11 @@ export default class EditExercise extends Component {
 
     const exercise = {
       username: this.state.username,
+      userKey: this.state.userKey,
       description: this.state.description,
+      date: this.state.date,
       duration: this.state.duration,
-      date: this.state.date
+      ingredients: this.state.ingredients.split(",")
     }
 
     console.log(exercise);
@@ -89,30 +101,15 @@ export default class EditExercise extends Component {
     axios.post('http://localhost:5000/exercises/update/' + this.props.match.params.id, exercise)
       .then(res => console.log(res.data));
 
-    window.location = '/';
   }
 
   render() {
     return (
     <div>
-      <h3>Edit Exercise Log</h3>
+      <h3>Edit Recipe</h3>
       <form onSubmit={this.onSubmit}>
         <div className="form-group"> 
-          <label>Username: </label>
-          <select ref="userInput"
-              required
-              className="form-control"
-              value={this.state.username}
-              onChange={this.onChangeUsername}>
-              {
-                this.state.users.map(function(user) {
-                  return <option 
-                    key={user}
-                    value={user}>{user}
-                    </option>;
-                })
-              }
-          </select>
+          Username: {this.state.username}
         </div>
         <div className="form-group"> 
           <label>Description: </label>
@@ -133,13 +130,13 @@ export default class EditExercise extends Component {
               />
         </div>
         <div className="form-group">
-          <label>Date: </label>
-          <div>
-            <DatePicker
-              selected={this.state.date}
-              onChange={this.onChangeDate}
-            />
-          </div>
+          <label>Ingredients (separated by commas): </label>
+          <input 
+              type="text" 
+              className="form-control"
+              value={this.state.ingredients}
+              onChange={this.onChangeIngredients}
+              />
         </div>
 
         <div className="form-group">

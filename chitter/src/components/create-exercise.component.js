@@ -68,7 +68,7 @@ export default class CreateExercise extends Component {
 
     const exercise = {
       username: this.props.userName,
-      userKey: "temp",
+      userKey: this.props.userKey,
       description: this.state.description,
       duration: this.state.duration,
       date: this.state.date,

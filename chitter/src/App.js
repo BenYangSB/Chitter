@@ -66,7 +66,7 @@ class App extends React.Component {
                       <br/>
                       <Route path="/" exact component={ExercisesList} />
                       <Route path="/edit/:id" component={EditExercise} />
-                      <Route path="/create" component={()=> <CreateExercise userName = {firebase.auth().currentUser.displayName} /> } />
+                      <Route path="/create" component={()=> <CreateExercise userKey = {firebase.auth().currentUser.uid} userName = {firebase.auth().currentUser.displayName} /> } />
                       <Route path="/user" component={() => <CreateUser userKey = {firebase.auth().currentUser.uid} 
                       
                       />} />

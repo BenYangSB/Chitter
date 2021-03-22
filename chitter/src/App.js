@@ -64,7 +64,7 @@ class App extends React.Component {
             <div>
                       <Navbar />
                       <br/>
-                      <Route path="/" exact component={ExercisesList} />
+                      <Route path="/" exact component={()=> <ExercisesList currentUserKey = {firebase.auth().currentUser.uid}/>} />
                       <Route path="/edit/:id" component={EditExercise} />
                       <Route path="/create" component={()=> <CreateExercise userKey = {firebase.auth().currentUser.uid} userName = {firebase.auth().currentUser.displayName} /> } />
                       <Route path="/user" component={() => <CreateUser userKey = {firebase.auth().currentUser.uid} 

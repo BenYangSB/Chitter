@@ -6,14 +6,21 @@ const Exercise = props => (
 
   <div class = "card" id = "recipe">
 
+      {console.log(props.currentKey)}
       <p>{props.exercise.username}</p>
       <p>{props.exercise.description}</p>
       <p>{props.exercise.duration}</p>
       <p>{props.exercise.ingredients}</p>
       <p>{props.exercise.date.substring(0,10)}</p>
-      <p>
+
+      { 
+      
+      props.exercise.userKey == props.currentKey && 
+        <p>
         <Link to={"/edit/"+props.exercise._id}>edit</Link> | <a href="#" onClick={() => { props.deleteExercise(props.exercise._id) }}>delete</a>
-      </p>
+        </p>
+      }
+
   </div>
 
 )
@@ -48,7 +55,7 @@ export default class ExercisesList extends Component {
 
   exerciseList() {
     return this.state.exercises.map(currentexercise => {
-      return <Exercise exercise={currentexercise} deleteExercise={this.deleteExercise} key={currentexercise._id}/>;
+      return <Exercise currentKey = {this.props.currentUserKey} exercise={currentexercise} deleteExercise={this.deleteExercise} key={currentexercise._id}/>;
     })
   }
 

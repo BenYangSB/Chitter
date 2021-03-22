@@ -3,16 +3,19 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Exercise = props => (
-  <tr>
-    <td>{props.exercise.username}</td>
-    <td>{props.exercise.description}</td>
-    <td>{props.exercise.duration}</td>
-    <td>{props.exercise.ingredients}</td>
-    <td>{props.exercise.date.substring(0,10)}</td>
-    <td>
-      <Link to={"/edit/"+props.exercise._id}>edit</Link> | <a href="#" onClick={() => { props.deleteExercise(props.exercise._id) }}>delete</a>
-    </td>
-  </tr>
+
+  <div class = "card" id = "recipe">
+
+      <p>{props.exercise.username}</p>
+      <p>{props.exercise.description}</p>
+      <p>{props.exercise.duration}</p>
+      <p>{props.exercise.ingredients}</p>
+      <p>{props.exercise.date.substring(0,10)}</p>
+      <p>
+        <Link to={"/edit/"+props.exercise._id}>edit</Link> | <a href="#" onClick={() => { props.deleteExercise(props.exercise._id) }}>delete</a>
+      </p>
+  </div>
+
 )
 
 export default class ExercisesList extends Component {
@@ -53,21 +56,7 @@ export default class ExercisesList extends Component {
     return (
       <div>
         <h3>Feed</h3>
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Duration</th>
-              <th>Ingredients</th>
-              <th>Date</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.exerciseList() }
-          </tbody>
-        </table>
+          { this.exerciseList() }
       </div>
     )
   }

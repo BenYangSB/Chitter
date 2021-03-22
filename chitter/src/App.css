@@ -13,6 +13,11 @@
   }
 }
 
+#recipe{
+    font-size: 20px;
+    margin-bottom: 2%;
+}
+
 .logIn{
   align-items: center;
   margin: auto;

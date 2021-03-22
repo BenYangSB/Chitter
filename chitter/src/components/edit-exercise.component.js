@@ -20,7 +20,6 @@ export default class EditExercise extends Component {
       description: '',
       ingredients: '',
       duration: 0,
-      date: new Date(),
       users: []
     }
   }
@@ -32,8 +31,7 @@ export default class EditExercise extends Component {
           username: response.data.username,
           description: response.data.description,
           duration: response.data.duration,
-          date: new Date(response.data.date),
-          ingredients: response.data.ingredients
+          ingredients: response.data.ingredients.join()
         })   
       })
       .catch(function (error) {
@@ -87,13 +85,14 @@ export default class EditExercise extends Component {
   onSubmit(e) {
     e.preventDefault();
 
+    let temp = this.state.ingredients.split(',')
     const exercise = {
       username: this.state.username,
       userKey: this.state.userKey,
       description: this.state.description,
       date: this.state.date,
       duration: this.state.duration,
-      ingredients: this.state.ingredients.split(",")
+      ingredients: temp
     }
 
     console.log(exercise);

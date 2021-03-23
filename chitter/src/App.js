@@ -69,7 +69,6 @@ class App extends React.Component {
 
       <Router>
 
-
       { this.state.isSignedIn && 
         console.log(firebase.auth().currentUser.uid)
       }
@@ -77,33 +76,8 @@ class App extends React.Component {
             <div className="container">
 
 
-
             <div>
-            <div class="float-container">
-                      <div class="float-child">
                       <Navbar />
-                      </div>
-                      
-                      <div className="float-child">
-                          {this.state.isSignedIn ? (
-                            <span id = "loginout">
-                              <div>Signed In!</div>
-                              <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
-                              <h1 id = "welcome">Welcome {firebase.auth().currentUser.displayName}</h1>
-                              <img id = "pfp"
-                                alt="profile picture"
-                                src={firebase.auth().currentUser.photoURL}
-                              />
-                            </span>
-                          ) : (
-                            <StyledFirebaseAuth
-                              uiConfig={this.uiConfig}
-                              firebaseAuth={firebase.auth()}
-                            />
-                          )}
-                      </div>
-            </div>
-                     
                       <br/>
                       <Route path="/" exact component={()=> <ExercisesList userKey = {firebase.auth().currentUser.uid} currUser = {this.state.currentUser} currentUserKey = {firebase.auth().currentUser.uid}/>} />
                       <Route path="/edit/:id" component={EditExercise} />
@@ -113,7 +87,6 @@ class App extends React.Component {
                       />} />
 
             </div>
-            
 
             <div className = "logIn">
             </div>
@@ -122,6 +95,26 @@ class App extends React.Component {
         }
 
 
+      {
+        <div className="App">
+            {this.state.isSignedIn ? (
+              <span id = "loginout">
+                <div>Signed In!</div>
+                <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
+                <h1 id = "welcome">Welcome {firebase.auth().currentUser.displayName}</h1>
+                <img id = "pfp"
+                  alt="profile picture"
+                  src={firebase.auth().currentUser.photoURL}
+                />
+              </span>
+            ) : (
+              <StyledFirebaseAuth
+                uiConfig={this.uiConfig}
+                firebaseAuth={firebase.auth()}
+              />
+            )}
+        </div>
+        }
       </Router>
      
     )

@@ -93,9 +93,7 @@ class App extends React.Component {
             
           </div>
         }
-
-
-      {
+              {
         <div className="App">
             {this.state.isSignedIn ? (
               <span id = "loginout">
@@ -115,6 +113,9 @@ class App extends React.Component {
             )}
         </div>
         }
+
+
+
       </Router>
      
     )

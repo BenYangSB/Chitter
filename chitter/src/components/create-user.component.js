@@ -109,9 +109,20 @@ export default class CreateUser extends Component {
               {
                 this.state.users.map((user)=> {
                   return <div class= "follow"> 
+                      {console.log(user.username)}
 
                       {user.username + " -> " + user.followers}
-                      <button id = "followBtn" onClick = {()=> this.onFollow(user)}>Follow!</button>                
+                      {   this.state.currentUser != null && !this.state.currentUser.following.includes(user.userKey) ?
+                        
+                          <button id = "followBtn" onClick = {()=> this.onFollow(user)}>
+                          Follow!
+                          </button>   
+                          :
+                          <a>        (Following)</a>  
+                      }
+
+
+            
                   </div>;
                 })
               }

@@ -15,7 +15,11 @@ import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 class App extends React.Component {
-  state = { isSignedIn: false }
+  state = { 
+    
+    currentUser: null,
+    isSignedIn: false 
+  }
   uiConfig = {
     signInFlow: "popup",
     signInOptions: [
@@ -33,7 +37,6 @@ class App extends React.Component {
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged(user => {
       this.setState({ isSignedIn: !!user })
-      console.log("user", user)
       
       const userAdd = {
         username: firebase.auth().currentUser.displayName,
@@ -44,8 +47,20 @@ class App extends React.Component {
     
       axios.post('http://localhost:5000/users/add', userAdd)
         .then(res => console.log(res.data));
-  
+      
 
+      //get this user back
+      axios.get('http://localhost:5000/users/' + userAdd.userKey)
+      .then(response => {
+        if (response.data != null && response.data.length > 0) {
+          this.setState({
+            currentUser: response.data[0],
+          })
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
     })
   }
 
@@ -64,9 +79,9 @@ class App extends React.Component {
             <div>
                       <Navbar />
                       <br/>
-                      <Route path="/" exact component={()=> <ExercisesList currentUserKey = {firebase.auth().currentUser.uid}/>} />
+                      <Route path="/" exact component={()=> <ExercisesList userKey = {firebase.auth().currentUser.uid} currUser = {this.state.currentUser} currentUserKey = {firebase.auth().currentUser.uid}/>} />
                       <Route path="/edit/:id" component={EditExercise} />
-                      <Route path="/create" component={()=> <CreateExercise userKey = {firebase.auth().currentUser.uid} userName = {firebase.auth().currentUser.displayName} /> } />
+                      <Route path="/create" component={()=> <CreateExercise  userKey = {firebase.auth().currentUser.uid} userName = {firebase.auth().currentUser.displayName} /> } />
                       <Route path="/user" component={() => <CreateUser userKey = {firebase.auth().currentUser.uid} 
                       
                       />} />

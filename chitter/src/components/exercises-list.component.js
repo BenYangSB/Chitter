@@ -6,16 +6,13 @@ const Exercise = props => (
 
   <div class = "card" id = "recipe">
 
-      {console.log(props.currentKey)}
       <p>{props.exercise.username}</p>
       <p>{props.exercise.description}</p>
       <p>{props.exercise.duration}</p>
       <p>{props.exercise.ingredients}</p>
       <p>{props.exercise.date.substring(0,10)}</p>
-
       { 
-      
-      props.exercise.userKey == props.currentKey && 
+        props.exercise.userKey == props.currentKey && 
         <p>
         <Link to={"/edit/"+props.exercise._id}>edit</Link> | <a href="#" onClick={() => { props.deleteExercise(props.exercise._id) }}>delete</a>
         </p>
@@ -35,13 +32,39 @@ export default class ExercisesList extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/exercises/')
-      .then(response => {
-        this.setState({ exercises: response.data })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    // console.log(this.props.currUser);
+
+    let tempUser = {
+      username: "henry chu",
+      userKey: "4",
+      following: ["1","xstGsReFpIOkeu46CxbBlaE9skr1","4"],
+      followers: 0
+    }
+
+    let following = [];
+    if(this.props.currUser != null && this.props.currUser != undefined){
+      following = this.props.currUser.following;
+    }
+    // console.log(following)
+
+    following.forEach(element => {
+        axios.get('http://localhost:5000/exercises/feed/' + element)
+        .then(response => {
+          // console.log(response);
+          let temp = this.state.exercises;
+
+          response.data.forEach(element => {
+              temp.push(element);
+          });
+          this.setState({ exercises: temp })
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    });
+
+
+
   }
 
   deleteExercise(id) {
@@ -55,6 +78,10 @@ export default class ExercisesList extends Component {
 
   exerciseList() {
     return this.state.exercises.map(currentexercise => {
+      if(currentexercise == undefined)
+        return;
+      console.log("HERE");
+      console.log(currentexercise )
       return <Exercise currentKey = {this.props.currentUserKey} exercise={currentexercise} deleteExercise={this.deleteExercise} key={currentexercise._id}/>;
     })
   }
@@ -63,6 +90,7 @@ export default class ExercisesList extends Component {
     return (
       <div>
         <h3>Feed</h3>
+          {/* {console.log(this.props.currUser.following)} */}
           { this.exerciseList() }
       </div>
     )

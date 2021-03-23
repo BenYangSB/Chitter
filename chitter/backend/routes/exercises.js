@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let Exercise = require('../models/exercise.model');
+let User = require('../models/user.model');
 
 router.route('/').get((req, res) => {
   Exercise.find()
@@ -35,6 +36,17 @@ router.route('/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+
+router.route('/feed/:id').get((req, res) => {
+
+  let following = [];
+  console.log(req);
+  Exercise.find({userKey: req.params.id})
+    .then(exercise => res.json(exercise))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
 router.route('/:id').delete((req, res) => {
   Exercise.findByIdAndDelete(req.params.id)
     .then(() => res.json('Exercise deleted.'))
@@ -42,7 +54,7 @@ router.route('/:id').delete((req, res) => {
 });
 
 router.route('/update/:id').post((req, res) => {
-  
+
   Exercise.findById(req.params.id)
     .then(exercise => {
       exercise.username = exercise.username;

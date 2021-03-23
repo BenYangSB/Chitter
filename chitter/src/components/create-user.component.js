@@ -48,6 +48,39 @@ export default class CreateUser extends Component {
         .then(res => console.log(res.data));
     }
   }
+  onUnFollow = (input) =>{
+
+    if(input.userKey == this.state.userKey || this.state.currentUser == null || this.state.currentUser == undefined)
+      return;
+
+    // console.log(this.state.currentUser);
+    let temp = (this.state.currentUser.following);
+    // console.log(temp);
+    let index = temp.indexOf(input.userKey);
+    if(index > -1){
+        temp.splice(index,1)
+
+        console.log(temp);
+        const userUpdatedFollow = {
+          username: this.state.currentUser.username,
+          userKey: this.state.currentUser.userKey,
+          following: temp,
+          followers: this.state.currentUser.followers,
+        }
+
+        axios.post('http://localhost:5000/users/update/' + this.state.currentUser._id, userUpdatedFollow)
+        .then(res => console.log(res.data));
+
+        const userUpdatedFollowers = {
+          username: input.username,
+          userKey: input.userKey,
+          following: input.following,
+          followers: input.followers-1,
+        }
+        axios.post('http://localhost:5000/users/update/' + input._id, userUpdatedFollowers)
+        .then(res => console.log(res.data));
+    }
+  }
   componentDidMount() {
     axios.get('http://localhost:5000/users/')
       .then(response => {
@@ -118,7 +151,9 @@ export default class CreateUser extends Component {
                           Follow!
                           </button>   
                           :
-                          <a>        (Following)</a>  
+                          <button id = "followBtn" onClick = {()=> this.onUnFollow(user)}>
+                          UnFollow!
+                          </button>   
                       }
 
 

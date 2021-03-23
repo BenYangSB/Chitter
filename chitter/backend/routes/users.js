@@ -2,7 +2,20 @@ const router = require('express').Router();
 const Exercise = require('../models/exercise.model');
 let User = require('../models/user.model');
 const mongoose = require('mongoose');
+const axios = require('axios');
 
+
+router.route('/trending').get((req, res) => {
+  
+  axios.get("https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=the weeknd&key=AIzaSyBYELaVxa1NaNwk0yHNOvkpr2epM1b5O00")
+  .then(response => {
+      console.log(response.data)
+      res.json(response.data);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+});
 router.route('/').get((req, res) => {
   User.find()
     .then(users => res.json(users))

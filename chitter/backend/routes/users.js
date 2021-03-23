@@ -6,10 +6,10 @@ const axios = require('axios');
 
 
 router.route('/trending').get((req, res) => {
+  console.log(req.headers)
   
-  axios.get("https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=the weeknd&key=AIzaSyBYELaVxa1NaNwk0yHNOvkpr2epM1b5O00")
+  axios.get('https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=' + req.headers.name +'&key=AIzaSyBYELaVxa1NaNwk0yHNOvkpr2epM1b5O00')
   .then(response => {
-      console.log(response.data)
       res.json(response.data);
   })
   .catch(error => {

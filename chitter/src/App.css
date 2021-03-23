@@ -18,6 +18,21 @@
     margin-bottom: 2%;
 }
 
+.trendingvids{
+
+  justify-content: center;
+  margin:auto;
+}
+#trendingbody{
+  background-color: rgb(148, 175, 216);
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 5%;
+}
+
+.trendingpic{
+  justify-content: center;
+}
 .loginout{
   position: fixed;
   z-index : 1;

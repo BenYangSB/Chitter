@@ -18,6 +18,18 @@
     margin-bottom: 2%;
 }
 
+.loginout{
+  position: fixed;
+  z-index : 1;
+  font-size : 3rem;
+  /* padding: 0; */
+  /* width : 10vw; */
+  background-color: var(--btn-background-color);
+  background-color: transparent;
+  /* margin-top: 43%; */
+  bottom: 10px;
+  left: 5px;
+}
 .logIn{
   align-items: center;
   margin: auto;

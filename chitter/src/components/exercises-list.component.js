@@ -71,6 +71,7 @@ export default class ExercisesList extends Component {
     }
     // console.log(following)
 
+    
     following.forEach(element => {
         axios.get('http://localhost:5000/exercises/feed/' + element)
         .then(response => {

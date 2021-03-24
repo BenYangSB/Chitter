@@ -16,11 +16,16 @@
 }
 
 #FEED{
-  background-color: white;
+  background-color: rgb(122, 113, 113);
+}
+
+body {
+  background-color: rgb(209, 202, 202);
+
 }
 .everything{
-  background-color: rgb(209, 202, 202);
-  height: 100%;
+  /* background-color: rgb(209, 202, 202);
+  height: 100%; */
 }
 
 #recipe{

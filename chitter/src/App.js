@@ -78,7 +78,7 @@ class App extends React.Component {
         console.log(firebase.auth().currentUser.uid)
       }
         {this.state.isSignedIn && 
-            <div className="container">
+            // <div className="container">
 
 
             <div>
@@ -90,7 +90,7 @@ class App extends React.Component {
                       <Route path="/create" component={()=> <CreateExercise  userKey = {firebase.auth().currentUser.uid} userName = {firebase.auth().currentUser.displayName} /> } />
                       <Route path="/user/discover" component={() => <CreateUser userKey = {firebase.auth().currentUser.uid} />} />
 
-            </div>
+            {/* </div> */}
 
             <div className = "logIn">
             </div>

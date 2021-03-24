@@ -88,7 +88,7 @@ export default class CreateExercise extends Component {
 
   render() {
     return (
-    <div>
+    <div class = "createRecipe">
       <h3>Post New Recipe!</h3>
       <form onSubmit={this.onSubmit}>
         <div className="form-group"> 

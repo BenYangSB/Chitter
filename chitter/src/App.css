@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: rgb(209, 202, 202);
+  height: 100%;
 }
 
 .App-logo {
@@ -40,6 +42,8 @@
 .trendingvids{
 
   justify-content: center;
+  background-color: rgb(209, 202, 202);
+  height: 100%;
   margin:auto;
 }
 #trendingbody{

@@ -22,9 +22,15 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: 100vh;
 }
-
+.createRecipe{
+  width: 60%;
+  display: flex;
+  margin-left: 20%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 #FEED{
   background-color: rgb(224, 224, 224);
 }

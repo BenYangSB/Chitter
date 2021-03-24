@@ -138,7 +138,7 @@ export default class CreateUser extends Component {
 
   render() {
     return (
-      <div>
+      <div class = "absFeed">
               {
                 this.state.users.map((user)=> {
                   return <div class= "follow"> 

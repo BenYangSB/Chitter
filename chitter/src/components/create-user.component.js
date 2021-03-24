@@ -47,6 +47,8 @@ export default class CreateUser extends Component {
         axios.post('http://localhost:5000/users/update/' + input._id, userUpdatedFollowers)
         .then(res => console.log(res.data));
     }
+
+    this.readUsers();
   }
   onUnFollow = (input) =>{
 
@@ -80,8 +82,11 @@ export default class CreateUser extends Component {
         axios.post('http://localhost:5000/users/update/' + input._id, userUpdatedFollowers)
         .then(res => console.log(res.data));
     }
+
+    this.readUsers();
   }
-  componentDidMount() {
+
+  readUsers = () => {
     axios.get('http://localhost:5000/users/')
       .then(response => {
         if (response.data.length > 0) {
@@ -95,8 +100,12 @@ export default class CreateUser extends Component {
       })
 
       console.log(this.state.currentUser);
+  }
 
-      axios.get('http://localhost:5000/users/' + this.props.userKey)
+  componentDidMount() {
+    this.readUsers();
+
+    axios.get('http://localhost:5000/users/' + this.props.userKey)
       .then(response => {
         if (response.data != null && response.data.length > 0) {
           this.setState({
@@ -109,9 +118,6 @@ export default class CreateUser extends Component {
       })
 
       console.log(this.state.currentUser);
-
-
-
   }
   onChangeUsername(e) {
     this.setState({

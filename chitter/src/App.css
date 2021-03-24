@@ -15,6 +15,10 @@
   }
 }
 
+:root {
+  --btn-background-color: rgb(71, 219, 187);
+}
+
 .feed-title {
   text-align : center;
 }
@@ -34,6 +38,31 @@
   justify-content: space-evenly;
 }
 
+#submitBtn {
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 10px;
+  border : none;
+  padding: 8px;
+  outline: 0;
+  background-color: var(--btn-background-color);
+}
+#submitBtn:hover {
+  filter: brightness(90%);
+}
+
+button {
+  border-radius: 10px;
+  border : none;
+  padding: 8px;
+  outline: 0;
+  background-color: var(--btn-background-color);
+}
+button:hover {
+  filter: brightness(90%);
+}
+
   /* justify-content: center;
   align-items: center;
   text-align: center;
@@ -44,8 +73,9 @@
   margin-left: 20%;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  /* text-align: center; */
 }
+
 #FEED{
   background-color: rgb(224, 224, 224);
 }

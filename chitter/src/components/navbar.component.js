@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 export default class Navbar extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     return (
@@ -20,6 +23,9 @@ export default class Navbar extends Component {
           </li>
           <li className="navbar-item">
           <Link to="/user/trending" className="nav-link">Trending</Link>
+          </li>
+          <li className="navbar-item">
+          <Link to= {"/user/profile/" + this.props.userKey } className="nav-link">My profile</Link>
           </li>
         </ul>
         </div>

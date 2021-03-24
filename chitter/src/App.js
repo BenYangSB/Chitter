@@ -8,6 +8,7 @@ import Navbar from "./components/navbar.component"
 import ExercisesList from "./components/exercises-list.component";
 import EditExercise from "./components/edit-exercise.component";
 import Trending from "./components/trending";
+import Profile from "./components/user-profile";
 
 import CreateExercise from "./components/create-exercise.component";
 import axios from 'axios';
@@ -82,13 +83,14 @@ class App extends React.Component {
 
 
             <div>
-                      <Navbar />
+                      <Navbar  userKey = {firebase.auth().currentUser.uid} />
                       <br/>
                       <Route path="/" exact component={()=> <ExercisesList userKey = {firebase.auth().currentUser.uid} currUser = {this.state.currentUser} currentUserKey = {firebase.auth().currentUser.uid}/>} />
                       <Route path="/user/trending" component={Trending}/>
                       <Route path="/edit/:id" component={EditExercise}/>
                       <Route path="/create" component={()=> <CreateExercise  userKey = {firebase.auth().currentUser.uid} userName = {firebase.auth().currentUser.displayName} /> } />
                       <Route path="/user/discover" component={() => <CreateUser userKey = {firebase.auth().currentUser.uid} />} />
+                      <Route path="/user/profile/:id"  component={() => <Profile currUser = {this.state.currentUser} userKey = {firebase.auth().currentUser.uid} />} />
 
             {/* </div> */}
 

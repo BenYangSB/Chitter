@@ -22,15 +22,16 @@ export default class Trending extends Component {
             }
         })
         .then(res => {
+            console.log(res.data.items)
             let curr = this.state.youtubeAPIResponse;
-            console.log(res.data.items);
             curr = curr.concat(res.data.items);
+            console.log(curr);
+
             this.setState({
                 youtubeAPIResponse : curr
             })
         });
     })
-
 
   }
 

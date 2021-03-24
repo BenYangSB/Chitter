@@ -71,7 +71,7 @@ export default class ExercisesList extends Component {
     }
     // console.log(following)
 
-    
+
     following.forEach(element => {
         axios.get('http://localhost:5000/exercises/feed/' + element)
         .then(response => {
@@ -125,10 +125,14 @@ export default class ExercisesList extends Component {
   render() {
     return (
       <div>
-        <h3>Feed</h3>
-          {/* {console.log(this.props.currUser.following)} */}
-          { this.exerciseList() }
+        <div class = "feed-title">Feed</div>
+
+        <div class = "feed-total">
+            {/* {console.log(this.props.currUser.following)} */}
+            { this.exerciseList() }
+        </div>
       </div>
+
     )
   }
 }

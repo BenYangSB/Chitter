@@ -13,9 +13,27 @@
   }
 }
 
+#FEED{
+  background-color: white;
+}
+.everything{
+  background-color: rgb(209, 202, 202);
+}
+
 #recipe{
+    padding: 1.5vw;
+    margin-left: 1%;
+    margin-right: 1%;
     font-size: 20px;
     margin-bottom: 2%;
+    min-width: 20%;
+}
+.feed-title{
+    font-size: 30px;
+}
+.feed-total{
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .trendingvids{

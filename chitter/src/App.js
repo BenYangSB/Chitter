@@ -69,7 +69,10 @@ class App extends React.Component {
   render() {
     return (
 
-      <Router>
+      <Router class = "complete">
+
+      <div class = "everything">
+
 
       { this.state.isSignedIn && 
         console.log(firebase.auth().currentUser.uid)
@@ -115,7 +118,7 @@ class App extends React.Component {
         </div>
         }
 
-
+      </div>
 
       </Router>
      

@@ -14,15 +14,24 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+.feed-title {
+  text-align : center;
+}
 .absFeed{
-  width: 60%;
+  width: 60vw;
   display: flex;
-  margin-left: 20%;
+  margin: auto;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  /* text-align: center; */
   min-height: 100vh;
+}
+.feed-total {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 #FEED{
@@ -40,7 +49,7 @@ body {
 
 #recipe{
     border-radius: 10px;
-    box-shadow: 10px 10px rgb(123, 187, 192);
+    box-shadow: 5px 5px rgb(123, 187, 192);
     padding: 1.5vw;
     margin-left: 1%;
     margin-right: 1%;

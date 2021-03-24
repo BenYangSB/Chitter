@@ -124,7 +124,7 @@ export default class ExercisesList extends Component {
 
   render() {
     return (
-      <div>
+      <div class = "absFeed">
         <div class = "feed-title">Feed</div>
 
         <div class = "feed-total">

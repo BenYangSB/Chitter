@@ -14,6 +14,16 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.absFeed{
+  width: 60%;
+  display: flex;
+  margin-left: 20%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
 
 #FEED{
   background-color: rgb(122, 113, 113);

@@ -104,8 +104,7 @@ export default class CreateUser extends Component {
 
   componentDidMount() {
     this.readUsers();
-
-    axios.get('http://localhost:5000/users/' + this.props.userKey)
+    axios.get('http://chitterr-app.herokuapp.com/user/discover')
       .then(response => {
         if (response.data != null && response.data.length > 0) {
           this.setState({
